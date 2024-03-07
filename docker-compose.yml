@@ -1,0 +1,18 @@
+version: '3.9'
+
+services:
+  web:
+    image: nginx:latest
+    ports:
+      - '8080:80'
+    volumes:
+      - ./api:/app
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+  php-fpm:
+    image: php:8.3-fpm
+    volumes:
+      - ./api:/app
+  php-cli:
+    image: php:8.3-cli
+    volumes:
+      - ./api:/app
